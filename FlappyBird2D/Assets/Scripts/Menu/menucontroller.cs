@@ -29,8 +29,6 @@ public class menucontroller : MonoBehaviour {
         }
         else musicBtext.text = "OFF";
 
-        music.GetComponent<AudioSource>().Play();
-
         
     }
 
