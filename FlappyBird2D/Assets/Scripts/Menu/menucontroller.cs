@@ -6,9 +6,7 @@ public class menucontroller : MonoBehaviour {
 
     public GameObject mainPage;
     public GameObject rankingPage;
-    public GameObject optionsPage;
-
-    
+    public GameObject optionsPage;   
 
     // Use this for initialization
     void Start () {
