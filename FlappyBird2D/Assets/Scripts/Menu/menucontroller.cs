@@ -1,20 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class menucontroller : MonoBehaviour {
 
     public GameObject mainPage;
     public GameObject rankingPage;
-    public GameObject optionsPage;   
+    public GameObject optionsPage;
+    private memoria mem;
+    public Text musicBtext;
+    public GameObject music;
 
     // Use this for initialization
     void Start () {
+        mem = GameObject.Find("Memoria").GetComponent<memoria>();
+        if (mem == null) Debug.Log("Memoria no assignada");
+
         mainPage.SetActive(false);
-        rankingPage.SetActive(true);
-        optionsPage.SetActive(false);
+        rankingPage.SetActive(false);
+        optionsPage.SetActive(true);
 
+        if (mem.musicaon)
+        {
+            musicBtext.text = "ON";
+            music.GetComponent<AudioSource>().Play();
+        }
+        else musicBtext.text = "OFF";
 
+        music.GetComponent<AudioSource>().Play();
+
+        
     }
 
     // Update is called once per frame
@@ -43,6 +59,23 @@ public class menucontroller : MonoBehaviour {
                 break;
         }
 
+    }
+
+    public void musicButton()
+    {
+        if (mem.musicaon)
+        {
+            musicBtext.text = "OFF";
+            mem.musicaon = false;
+            music.GetComponent<AudioSource>().Stop();
+        }
+        else
+        {
+            musicBtext.text = "ON";
+            mem.musicaon = true;
+            music.GetComponent<AudioSource>().Play();
+
+        }
     }
 
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class memoria : MonoBehaviour {
     private static memoria instanceRef;
 
-    bool musicaon = true;
+    public bool musicaon = true;
 
     void Awake()
     {
