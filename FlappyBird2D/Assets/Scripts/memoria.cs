@@ -6,6 +6,7 @@ public class memoria : MonoBehaviour {
     private static memoria instanceRef;
 
     public bool musicaon = true;
+    
 
     void Awake()
     {
