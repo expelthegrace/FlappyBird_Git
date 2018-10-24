@@ -14,41 +14,55 @@ public class obstacleController : MonoBehaviour {
 
     public GameObject limitEsq;
 
+    public bool inici;
+
     private List<GameObject> obstacles;
 
 	// Use this for initialization
 	void Start () {
         gap = 4.45f;
-        variabilitat = 1f;
+        variabilitat = 3f;
         obstacles = new List<GameObject>();
 
         obstacles.Add(obs1);
         obstacles.Add(obs2);
         obstacles.Add(obs3);
 
+        inici = false;
+
         obsA = obs1;
         obsB = obs2;
         obsC = obs3;
-
-        obsA.transform.position = new Vector3(transform.position.x, obsA.transform.position.y, obsA.transform.position.z);
-        obsB.transform.position = obsA.transform.position + new Vector3(gap, Random.Range(-variabilitat,variabilitat), 0);
-        obsC.transform.position = obsB.transform.position + new Vector3(gap, Random.Range(-variabilitat, variabilitat), 0);
+       
+    }
+    public void Inici()
+    {
+        obsA.transform.position = new Vector3(transform.position.x + gap+2, obsA.transform.position.y, obsA.transform.position.z);
+        obsB.transform.position = obsA.transform.position + new Vector3(gap, getNextY(obsA), 0);
+        obsC.transform.position = obsB.transform.position + new Vector3(gap, getNextY(obsB), 0);
+        inici = true;
 
     }
-
     // Update is called once per frame
     void Update () {
 
-        if (obsA.transform.position.x < limitEsq.transform.position.x)
+        if (inici)
         {
-            float nextY = Random.Range(-variabilitat, variabilitat);
-            GameObject aux = obsA;
-            obsA.transform.position = obsC.transform.position + new Vector3(gap, nextY, 0);
-            obsA = obsB;
-            obsB = obsC;
-            obsC = aux;
-      
+            if (obsA.transform.position.x < limitEsq.transform.position.x)
+            {
+                float nextY = getNextY(obsC);
+                GameObject aux = obsA;
+                obsA.transform.position = obsC.transform.position + new Vector3(gap, nextY, 0);
+                obsA = obsB;
+                obsB = obsC;
+                obsC = aux;
+
+            }
         }
-   
 	}
+
+    float getNextY(GameObject ant)
+    {
+        return Mathf.Min(Mathf.Max(Random.Range(-variabilitat, variabilitat) + ant.transform.position.y, -1.26f), 2.24f) - ant.transform.position.y;
+    }
 }

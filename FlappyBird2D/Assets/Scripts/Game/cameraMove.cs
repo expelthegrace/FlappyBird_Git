@@ -7,7 +7,7 @@ public class cameraMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        camSpeed = 3f;
+        camSpeed = 3.2f;
 	}
 	
 	// Update is called once per frame

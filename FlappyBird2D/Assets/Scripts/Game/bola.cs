@@ -16,13 +16,13 @@ public class bola : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        gForce = 0.01f;
-        jumpForce = 0.2f;
+        gForce = 0.85f;
+        jumpForce = 13f;
 
         jumpVel = 0f;
         fallVel = 0f;
         jumping = false;
-        viu = true;
+        viu = false;
     }
 	
 	// Update is called once per frame
