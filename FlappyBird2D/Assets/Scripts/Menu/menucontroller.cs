@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class menucontroller : MonoBehaviour {
 
@@ -17,9 +18,9 @@ public class menucontroller : MonoBehaviour {
         mem = GameObject.Find("Memoria").GetComponent<memoria>();
         if (mem == null) Debug.Log("Memoria no assignada");
 
-        mainPage.SetActive(false);
+        mainPage.SetActive(true);
         rankingPage.SetActive(false);
-        optionsPage.SetActive(true);
+        optionsPage.SetActive(false);
 
         if (mem.musicaon)
         {
@@ -56,6 +57,9 @@ public class menucontroller : MonoBehaviour {
             case 3: // options back to main
                 optionsPage.SetActive(false);
                 mainPage.SetActive(true);
+                break;
+            case 4: //play
+                SceneManager.LoadScene(1);
                 break;
         }
 

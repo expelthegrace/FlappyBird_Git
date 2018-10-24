@@ -25,6 +25,15 @@ public class bola : MonoBehaviour {
         viu = false;
     }
 	
+    public void Reset()
+    {
+        jumpVel = 0f;
+        fallVel = 0f;
+        jumping = false;
+        viu = false;
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+
+    }
 	// Update is called once per frame
 	void Update () {
 
