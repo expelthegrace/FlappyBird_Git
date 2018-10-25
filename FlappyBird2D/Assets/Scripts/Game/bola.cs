@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class bola : MonoBehaviour {
 
@@ -14,6 +16,9 @@ public class bola : MonoBehaviour {
     public GameObject limitInf;
     public bool viu;
 
+    public int score;
+    public Text scoreT;
+
 	// Use this for initialization
 	void Start () {
         gForce = 0.85f;
@@ -23,6 +28,7 @@ public class bola : MonoBehaviour {
         fallVel = 0f;
         jumping = false;
         viu = false;
+        score = 0;
     }
 	
     public void Reset()
@@ -32,10 +38,12 @@ public class bola : MonoBehaviour {
         jumping = false;
         viu = false;
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-
+        score = 0;
     }
 	// Update is called once per frame
 	void Update () {
+
+        scoreT.text = "Score " + score.ToString();
 
         if (viu) {
             if (!jumping)
@@ -65,5 +73,12 @@ public class bola : MonoBehaviour {
 
             if (transform.position.y < limitInf.transform.position.y) viu = false;
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "death") viu = false;
+        else if (col.gameObject.tag == "forat") ++score;
+        Debug.Log("colisions");
     }
 }
