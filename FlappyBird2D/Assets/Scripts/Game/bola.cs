@@ -19,6 +19,8 @@ public class bola : MonoBehaviour {
     public int score;
     public Text scoreT;
 
+    public AudioSource jumpA;
+
 	// Use this for initialization
 	void Start () {
         gForce = 0.85f;
@@ -54,6 +56,7 @@ public class bola : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                jumpA.Play();
                 jumping = true;
                 jumpVel = jumpForce;
                 fallVel = 0f;
