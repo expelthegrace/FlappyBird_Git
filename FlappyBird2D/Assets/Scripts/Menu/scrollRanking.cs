@@ -31,7 +31,6 @@ public class scrollRanking : MonoBehaviour {
         {
             entrada entr = new entrada("PlayerName-" + Random.Range(0,500), Random.Range(0, 500));
             entrades.Add(entr);
-           // rankingT.text = rankingT.text + (i+1).ToString() + ": " + entr.nom + " - " + entr. score + "\n";
         }
 
         orderBy(1); //order by score at beginning
@@ -46,10 +45,8 @@ public class scrollRanking : MonoBehaviour {
 
     void orderBy(int x)
     {
-
         switch(x)
-        {
-            
+        {        
             case 0: //order by name
                 entrades = entrades.OrderBy(tile => tile.nom).ToList();
                 break;

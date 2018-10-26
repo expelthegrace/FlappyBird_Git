@@ -42,6 +42,14 @@ public class bola : MonoBehaviour {
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         score = 0;
     }
+
+    void Jump()
+    {
+        jumpA.Play();
+        jumping = true;
+        jumpVel = jumpForce;
+        fallVel = 0f;
+    }
 	// Update is called once per frame
 	void Update () {
 
@@ -54,13 +62,7 @@ public class bola : MonoBehaviour {
                 transform.position -= new Vector3(0, fallVel, 0) * Time.deltaTime;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                jumpA.Play();
-                jumping = true;
-                jumpVel = jumpForce;
-                fallVel = 0f;
-            }
+            if (Input.GetKeyDown(KeyCode.Space)) Jump();
 
             if (jumping)
             {
@@ -82,6 +84,11 @@ public class bola : MonoBehaviour {
     {
         if (col.gameObject.tag == "death") viu = false;
         else if (col.gameObject.tag == "forat") ++score;
-        Debug.Log("colisions");
+  
+    }
+
+    public void jumpButtonPressed()
+    {
+        Jump();
     }
 }

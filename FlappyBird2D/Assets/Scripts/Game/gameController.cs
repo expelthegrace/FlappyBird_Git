@@ -13,7 +13,7 @@ public class gameController : MonoBehaviour {
     private bool running, final;
 
     public GameObject deadCanvas;
-
+    public GameObject pressSpaceT;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +23,8 @@ public class gameController : MonoBehaviour {
         back = GameObject.Find("BackgroundController").GetComponent<background>();
 
         deadCanvas.SetActive(false);
+
+        pressSpaceT.SetActive(true);
 
         final = false;
         running = false;
@@ -37,18 +39,24 @@ public class gameController : MonoBehaviour {
         obstacles.Reset();
         final = false;
         deadCanvas.SetActive(false);
+        pressSpaceT.SetActive(true);
+
+
+    }
+
+    void Inici()
+    {
+        Bola.viu = true;
+        obstacles.Inici();
+        running = true;
+        cameraMain.move = true;
+        back.move = true;
+        pressSpaceT.SetActive(false);
 
     }
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown(KeyCode.Space) && !running)
-        {
-            Bola.viu = true;
-            obstacles.Inici();
-            running = true;
-            cameraMain.move = true;
-            back.move = true;
-        }
+        if (Input.GetKeyDown(KeyCode.Space) && !running) Inici();
 
         if (!Bola.viu && running && !final) // si el player mor
         {
@@ -72,4 +80,6 @@ public class gameController : MonoBehaviour {
                 break;
         }
     }
+
+
 }

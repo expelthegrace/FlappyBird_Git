@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class obstacleController : MonoBehaviour {
 
-    public GameObject obs1, obs2, obs3;
-    private GameObject obsA, obsB, obsC;
+    public GameObject obs1, obs2, obs3, obs4, obs5;
+    private GameObject obsA, obsB, obsC, obsD, obsE;
 
     public float gap;
 
@@ -25,14 +25,21 @@ public class obstacleController : MonoBehaviour {
 
         obsA = obs1;
         obsB = obs2;
-        obsC = obs3;    
+        obsC = obs3;
+        obsD = obs4;
+        obsE = obs5;
+
     }
 
     public void Inici()
     {
-        obsA.transform.position = new Vector3(transform.position.x + gap+1, obsA.transform.position.y, obsA.transform.position.z);
+        obsA.transform.position = new Vector3(transform.position.x + gap*2, obsA.transform.position.y, obsA.transform.position.z);
         obsB.transform.position = obsA.transform.position + new Vector3(gap, getNextY(obsA), 0);
         obsC.transform.position = obsB.transform.position + new Vector3(gap, getNextY(obsB), 0);
+        obsD.transform.position = obsC.transform.position + new Vector3(gap, getNextY(obsC), 0);
+        obsE.transform.position = obsD.transform.position + new Vector3(gap, getNextY(obsD), 0);
+
+
         inici = true;
 
     }
@@ -49,12 +56,14 @@ public class obstacleController : MonoBehaviour {
         {
             if (obsA.transform.position.x < limitEsq.transform.position.x)
             {
-                float nextY = getNextY(obsC);
+                float nextY = getNextY(obsE);
                 GameObject aux = obsA;
-                obsA.transform.position = obsC.transform.position + new Vector3(gap, nextY, 0);
+                obsA.transform.position = obsE.transform.position + new Vector3(gap, nextY, 0);
                 obsA = obsB;
                 obsB = obsC;
-                obsC = aux;
+                obsC = obsD;
+                obsD = obsE;
+                obsE = aux;
             }
         }
 	}
